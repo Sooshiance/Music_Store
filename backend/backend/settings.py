@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
 
     'corsheaders',
+
+    'api.apps.ApiConfig',
+    'user.apps.UserConfig',
+    'music.apps.MusicConfig',
 ]
 
 MIDDLEWARE = [
@@ -134,6 +138,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# TODO :
+AUTH_USER_MODEL = "user.User"
 
 
 # TODO :
