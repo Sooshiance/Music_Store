@@ -70,13 +70,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login   = models.DateTimeField(null=True, blank=True)
     created_at   = models.DateTimeField(auto_now_add=True)
     
-    USERNAME_FIELD = "phone"
-    REQUIRED_FIELDS = ["email", "username", "full_name"]
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["phone", "username", "full_name"]
     
     objects = AllUser()
 
     def __str__(self) -> str:
-        return self.phone
+        return self.email
     
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
@@ -90,10 +90,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class UserOTP(models.Model):
-    numbers     = RegexValidator(r'^[0-9a]*$', message='only numbers')
-    user        = models.ForeignKey(User, on_delete=models.CASCADE)
-    otp         = models.CharField(max_length=6, validators=[numbers], unique=True)
-    created_at  = models.DateTimeField(auto_now_add=True)
+    numbers    = RegexValidator(r'^[0-9a]*$', message='only numbers')
+    user       = models.ForeignKey(User, on_delete=models.CASCADE)
+    otp        = models.CharField(max_length=6, validators=[numbers], unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.user}'    
